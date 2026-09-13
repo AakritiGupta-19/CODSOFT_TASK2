@@ -1,0 +1,737 @@
+/* =========================================================
+   TASKORA — RESPONSIVE FOUNDATION
+========================================================= */
+
+/* =========================================================
+   LARGE LAPTOPS
+========================================================= */
+
+@media (max-width: 1250px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .dashboard-intro {
+        padding: 30px;
+    }
+    .intro-illustration {
+        width: 190px;
+        flex-basis: 190px;
+    }
+}
+
+/* =========================================================
+   TABLETS / SMALL LAPTOPS
+========================================================= */
+
+@media (max-width: 1000px) {
+    :root {
+        --sidebar-width: 235px;
+    }
+    .top-header {
+        padding-inline: 20px;
+    }
+    .page {
+        padding-inline: 20px;
+    }
+    .dashboard-intro {
+        min-height: 225px;
+    }
+    .intro-illustration {
+        width: 170px;
+        flex-basis: 170px;
+        transform: scale(0.88);
+        transform-origin: center;
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .priority-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: min(290px, 86vw);
+        box-shadow: var(--shadow-lg);
+        z-index: 1100 !important;
+    }
+    .app.sidebar-mobile-open .sidebar {
+        transform: translateX(0) !important;
+        z-index: 1100 !important;
+    }
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+    .app.sidebar-collapsed .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+    .app.sidebar-collapsed .sidebar {
+        width: min(280px, 84vw);
+        transform: translateX(-100%);
+    }
+    .mobile-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .mobile-menu-button {
+        width: 41px;
+        height: 41px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+    }
+    .mobile-brand {
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+    }
+    .header-search {
+        max-width: none;
+    }
+    .top-header {
+        gap: 12px;
+    }
+    .profile-name {
+        display: none;
+    }
+    .profile-trigger {
+        padding-right: 5px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+    :root {
+        --header-height: 67px;
+    }
+    .top-header {
+        min-height: var(--header-height);
+        padding: 10px 13px;
+        gap: 8px;
+    }
+    .header-search {
+        order: 3;
+        flex-basis: 100%;
+    }
+    .top-header {
+        flex-wrap: wrap;
+    }
+    .header-search input {
+        height: 43px;
+    }
+    .header-actions {
+        gap: 5px;
+    }
+    .header-icon-button {
+        width: 39px;
+        height: 39px;
+    }
+    .profile-trigger {
+        min-height: 39px;
+    }
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    .page {
+        padding: 24px 14px 40px;
+    }
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 18px;
+    }
+    .page-heading .secondary-button {
+        width: 100%;
+    }
+    .dashboard-intro {
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 22px;
+    }
+    .intro-content {
+        max-width: none;
+    }
+    .intro-slogan {
+        font-size: 0.88rem;
+    }
+    .intro-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .intro-actions .primary-button,
+    .intro-actions .text-button {
+        width: 100%;
+    }
+    .intro-illustration {
+        align-self: center;
+        width: 170px;
+        height: 145px;
+        flex-basis: 145px;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .stat-card {
+        min-height: 95px;
+        padding: 13px;
+    }
+    .stat-icon {
+        width: 37px;
+        height: 37px;
+    }
+    .stat-card strong {
+        font-size: 1.25rem;
+    }
+    .dashboard-card,
+    .priority-card {
+        padding: 16px;
+    }
+    .progress-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .progress-ring {
+        width: 90px;
+        height: 90px;
+    }
+    .dashboard-empty-state {
+        padding: 32px 16px;
+    }
+    .toast-container {
+        right: 15px;
+        bottom: 15px;
+        left: 15px;
+        width: auto;
+    }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+    .mobile-brand {
+        display: none;
+    }
+    .header-actions {
+        margin-left: auto;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .header-search {
+        order: 3;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =========================================
+   TASKORA PHASE 2 - RESPONSIVE
+========================================= */
+@media (max-width: 1200px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .about-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 950px) {
+    .dashboard-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .dashboard-actions {
+        width: 100%;
+    }
+    .search-wrapper {
+        flex: 1;
+        width: auto;
+    }
+    .dashboard-main-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .taskora-dashboard {
+        padding: 17px;
+    }
+    .dashboard-intro {
+        padding: 28px 22px;
+        min-height: auto;
+    }
+    .intro-illustration {
+        display: none;
+    }
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-summary-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .profile-preview {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .dashboard-actions {
+        flex-wrap: wrap;
+    }
+    .search-wrapper {
+        flex-basis: 100%;
+        order: -1;
+    }
+    .dashboard-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    .stat-card {
+        padding: 13px;
+    }
+    .dashboard-summary-grid {
+        grid-template-columns: 1fr;
+    }
+    .progress-ring-area {
+        flex-direction: column;
+    }
+    .intro-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+/* =========================================
+   TASKORA PHASE 3 - RESPONSIVE
+========================================= */
+@media (max-width: 700px) {
+    .taskora-modal {
+        padding: 10px;
+    }
+    .task-modal-content {
+        max-height: 94vh;
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .task-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .task-form-field.full-width {
+        grid-column: auto;
+    }
+    .task-form-actions {
+        flex-wrap: wrap;
+    }
+    .task-form-actions button {
+        flex: 1;
+        min-width: 100px;
+    }
+    .toast-container {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+    .taskora-toast {
+        min-width: 0;
+        width: 100%;
+    }
+}
+/* =========================================
+   PHASE 5 — RESPONSIVE
+========================================= */
+@media (max-width: 1100px) {
+    .progress-overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .progress-main-card {
+        grid-column: span 2;
+    }
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 800px) {
+    .focus-layout {
+        grid-template-columns: 1fr;
+    }
+    .progress-overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 550px) {
+    .progress-overview-grid {
+        grid-template-columns: 1fr;
+    }
+    .progress-main-card {
+        grid-column: auto;
+    }
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    .focus-timer-card,
+    .time-comparison-card,
+    .progress-main-card,
+    .progress-stat-card,
+    .insight-card {
+        border-radius: 18px;
+    }
+    .focus-timer {
+        font-size: 54px;
+    }
+    .time-comparison-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================
+   PHASE 4 — RESPONSIVE
+========================================= */
+@media (max-width: 900px) {
+    .calendar-layout {
+        grid-template-columns: 1fr;
+    }
+    .calendar-day {
+        min-height: 55px;
+    }
+    .upcoming-item {
+        grid-template-columns: 75px 1fr;
+    }
+    .upcoming-item .task-card-actions {
+        grid-column: 1 / -1;
+    }
+}
+@media (max-width: 600px) {
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .calendar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .calendar-card,
+    .selected-date-card {
+        padding: 15px;
+        border-radius: 18px;
+    }
+    .calendar-grid {
+        gap: 4px;
+    }
+    .calendar-day {
+        min-height: 48px;
+        border-radius: 11px;
+    }
+    .calendar-day-number {
+        width: 29px;
+        height: 29px;
+        font-size: 12px;
+    }
+    .calendar-weekdays span {
+        font-size: 10px;
+    }
+    .taskora-task-grid {
+        grid-template-columns: 1fr;
+    }
+    .task-details-info {
+        grid-template-columns: 1fr;
+    }
+    .taskora-modal-content {
+        padding: 22px;
+    }
+}
+/* =========================================
+   TASKORA PHASE 6 RESPONSIVE
+========================================= */
+@media (max-width: 900px) {
+    .taskora-p6-filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .taskora-p6-results {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .taskora-p6-search-panel {
+        padding: 17px;
+        border-radius: 18px;
+    }
+    .taskora-p6-search-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .taskora-p6-filters {
+        grid-template-columns: 1fr;
+    }
+    .taskora-p6-search-header h2 {
+        font-size: 21px;
+    }
+}
+/* =========================================
+   TASKORA PHASE 7 RESPONSIVE
+========================================= */
+@media (max-width: 600px) {
+    .taskora-p7-notification {
+        padding: 13px;
+    }
+    .taskora-p7-notification-icon {
+        width: 35px;
+        height: 35px;
+    }
+    .taskora-p7-tabs {
+        overflow-x: auto;
+    }
+    .taskora-p7-tab {
+        white-space: nowrap;
+    }
+}
+/* =========================================================
+   PHASE 8 + 9 RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+    .taskora-tools-panel {
+        left: 90px;
+        right: 15px;
+        width: auto;
+    }
+}
+@media (max-width: 600px) {
+    .taskora-tools-panel {
+        left: 15px;
+        right: 15px;
+        top: 65px;
+        width: auto;
+    }
+    .taskora-modal-overlay {
+        padding: 12px;
+    }
+    .taskora-modal {
+        max-height: 90vh;
+        border-radius: 18px;
+        padding: 17px;
+    }
+    .taskora-recycle-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .taskora-recycle-actions {
+        width: 100%;
+    }
+    .taskora-small-btn {
+        flex: 1;
+    }
+    .taskora-profile-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+/* =========================================
+   PHASE 10 — RESPONSIVE POLISH
+   ========================================= */
+@media (max-width: 1100px) {
+    .dashboard-grid,
+    .main-grid,
+    .content-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .dashboard-main,
+    .main-content {
+        min-width: 0;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    .dashboard-grid,
+    .main-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    .header,
+    .dashboard-header,
+    .top-header {
+        gap: 10px;
+    }
+    .search-bar,
+    .search-container {
+        width: 100%;
+    }
+    .profile-area {
+        flex-shrink: 0;
+    }
+    .final-modal-box {
+        padding: 25px 20px;
+    }
+    .celebration-content {
+        padding: 35px 22px;
+    }
+    .scroll-top-btn {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+@media (max-width: 520px) {
+    .final-modal-actions {
+        flex-direction: column;
+    }
+    .secondary-btn,
+    .danger-btn {
+        width: 100%;
+    }
+    .celebration-content h2 {
+        font-size: 26px;
+    }
+    .party-icon {
+        font-size: 50px;
+    }
+}
+/* =========================================================
+   TASKORA — RESPONSIVE HEADER
+   STEP 7 — ADD AT END
+========================================================= */
+@media (max-width: 900px) {
+    .header-search {
+        max-width: none;
+    }
+    .header-actions {
+        gap: 8px;
+    }
+}
+@media (max-width: 680px) {
+    .top-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .header-search {
+        order: 3;
+        flex-basis: 100%;
+    }
+    .header-search input#globalSearch {
+        min-height: 44px;
+    }
+    .taskora-search-results {
+        max-height: 300px;
+    }
+}
+@media (max-width: 480px) {
+    .header-actions {
+        gap: 5px;
+    }
+    .header-icon-button {
+        width: 40px;
+        height: 40px;
+    }
+    .profile-name {
+        display: none;
+    }
+}/* =========================================================
+   TASKORA — RESPONSIVE HEADER
+   STEP 7 — ADD AT END
+========================================================= */
+@media (max-width: 900px) {
+    .header-search {
+        max-width: none;
+    }
+    .header-actions {
+        gap: 8px;
+    }
+}
+@media (max-width: 680px) {
+    .top-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .header-search {
+        order: 3;
+        flex-basis: 100%;
+    }
+    .header-search input#globalSearch {
+        min-height: 44px;
+    }
+    .taskora-search-results {
+        max-height: 300px;
+    }
+}
+@media (max-width: 480px) {
+    .header-actions {
+        gap: 5px;
+    }
+    .header-icon-button {
+        width: 40px;
+        height: 40px;
+    }
+    .profile-name {
+        display: none;
+    }
+}/* =========================================================
+   TASKORA — RESPONSIVE HEADER
+   STEP 7 — ADD AT END
+========================================================= */
+@media (max-width: 900px) {
+    .header-search {
+        max-width: none;
+    }
+    .header-actions {
+        gap: 8px;
+    }
+}
+@media (max-width: 680px) {
+    .top-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .header-search {
+        order: 3;
+        flex-basis: 100%;
+    }
+    .header-search input#globalSearch {
+        min-height: 44px;
+    }
+    .taskora-search-results {
+        max-height: 300px;
+    }
+}
+@media (max-width: 480px) {
+    .header-actions {
+        gap: 5px;
+    }
+    .header-icon-button {
+        width: 40px;
+        height: 40px;
+    }
+    .profile-name {
+        display: none;
+    }
+}

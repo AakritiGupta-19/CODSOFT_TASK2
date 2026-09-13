@@ -1,0 +1,196 @@
+/* =========================================================
+   TASKORA — ANIMATION SYSTEM animation.css
+========================================================= */
+
+/* =========================================================
+   PAGE / CARD ENTRANCE
+========================================================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes floatingIllustration {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes toastOut {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px) scale(0.97);
+    }
+}
+
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+.page.active-page {
+    animation: fadeUp 320ms ease both;
+}
+
+/* =========================================================
+   DASHBOARD CARD ENTRANCE
+========================================================= */
+
+.dashboard-card,
+.stat-card,
+.priority-card {
+    animation: fadeUp 420ms ease both;
+}
+
+.stats-grid .stat-card:nth-child(2),
+.dashboard-grid .dashboard-card:nth-child(2),
+.priority-grid .priority-card:nth-child(2) {
+    animation-delay: 50ms;
+}
+
+.stats-grid .stat-card:nth-child(3),
+.dashboard-grid .dashboard-card:nth-child(3) {
+    animation-delay: 100ms;
+}
+
+.stats-grid .stat-card:nth-child(4),
+.dashboard-grid .dashboard-card:nth-child(4) {
+    animation-delay: 150ms;
+}
+/* =========================================
+   TASKORA PHASE 2 - ANIMATIONS
+========================================= */
+@keyframes taskoraFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+@keyframes taskoraFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dashboard-intro,
+.stat-card,
+.dashboard-card,
+.summary-card,
+.about-taskora-card {
+    animation: taskoraFadeUp 0.5s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =========================================
+   PHASE 10 — MICRO ANIMATIONS
+   ========================================= */
+
+.button-pressed {
+    transform: scale(0.96) !important;
+}
+
+.final-toast {
+    animation: finalToastIn 0.3s ease forwards;
+}
+
+.final-toast.show {
+    opacity: 1;
+}
+
+@keyframes finalToastIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Gentle entrance for existing content */
+.final-polish-enter {
+    animation: finalContentEnter 0.45s ease both;
+}
+
+@keyframes finalContentEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtle floating effect */
+.final-float {
+    animation: finalFloat 4s ease-in-out infinite;
+}
+
+@keyframes finalFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}

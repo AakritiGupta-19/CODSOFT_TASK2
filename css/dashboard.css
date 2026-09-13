@@ -1,0 +1,346 @@
+/* =========================================================
+   TASKORA — DASHBOARD LAYOUT dashboard.css
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.dashboard-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.card-header h3 {
+    font-size: 1rem;
+}
+
+.card-header-icon {
+    color: var(--purple);
+    font-size: 1rem;
+}
+
+.card-link-button {
+    padding: 4px 0;
+    color: var(--purple-dark);
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.card-link-button:hover {
+    opacity: 0.75;
+    transform: translateX(2px);
+}
+
+/* =========================================================
+   PRODUCTIVITY SCORE
+========================================================= */
+
+.progress-content {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.progress-ring {
+    width: 105px;
+    height: 105px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            var(--surface) 57%,
+            transparent 58%
+        ),
+        conic-gradient(
+            var(--purple) 0deg,
+            var(--purple) 0deg,
+            var(--purple-soft) 0deg
+        );
+    box-shadow:
+        inset 0 0 0 1px var(--border);
+}
+
+.progress-ring span {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.progress-details {
+    flex: 1;
+}
+
+.progress-details p {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+.progress-bar {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--purple-soft);
+}
+
+.progress-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--pink)
+        );
+    transition: width 400ms ease;
+}
+
+/* =========================================================
+   TASK PREVIEWS
+========================================================= */
+
+.task-preview-list {
+    display: grid;
+    gap: 8px;
+    max-height: 190px;
+    overflow-y: auto;
+}
+
+.task-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 11px;
+    border-radius: 11px;
+    background: var(--bg-tertiary);
+}
+
+.task-preview-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--purple);
+}
+
+.task-preview-content {
+    min-width: 0;
+}
+
+.task-preview-content strong {
+    display: block;
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-preview-content span {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+/* =========================================================
+   FOCUS CARD
+========================================================= */
+
+.focus-stat {
+    margin-bottom: 20px;
+}
+
+.focus-stat strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 1.8rem;
+}
+
+.focus-stat span {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+}
+
+.mini-stat-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.mini-stat-row > div {
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg-tertiary);
+}
+
+.mini-stat-row strong,
+.mini-stat-row span {
+    display: block;
+}
+
+.mini-stat-row strong {
+    margin-bottom: 3px;
+    font-size: 1rem;
+}
+
+.mini-stat-row span {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+/* =========================================================
+   PRIORITY CARDS
+========================================================= */
+
+.priority-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.priority-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.priority-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.priority-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.priority-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+}
+
+.priority-card-header span {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.priority-card-header h3 {
+    font-size: 0.95rem;
+}
+
+.urgent-card {
+    background:
+        linear-gradient(
+            135deg,
+            var(--surface),
+            var(--danger-soft)
+        );
+}
+
+.urgent-card .priority-icon {
+    color: var(--danger);
+    background: var(--danger-soft);
+}
+
+.urgent-card .priority-card-header span {
+    color: var(--danger);
+}
+
+.high-card {
+    background:
+        linear-gradient(
+            135deg,
+            var(--surface),
+            var(--warning-soft)
+        );
+}
+
+.high-card .priority-icon {
+    color: var(--warning);
+    background: var(--warning-soft);
+}
+
+.high-card .priority-card-header span {
+    color: var(--warning);
+}
+
+.priority-task-list {
+    display: grid;
+    gap: 7px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.priority-task-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.34);
+}
+
+[data-theme="dark"] .priority-task-item {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.priority-task-item i {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+}
+
+.priority-task-item span {
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

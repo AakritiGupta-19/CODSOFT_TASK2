@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taskora — a modern personal productivity and task management application.">
+    <meta name="theme-color" content="#f8f6ff">
+    <title>Taskora | Smart Productivity</title>
+    <!-- Main styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Phase 10 Final Polish -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- =========================================================
+         APPLICATION WRAPPER
+    ========================================================== -->
+    <div class="app" id="app">
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Brand -->
+            <div class="sidebar-header">
+                <a href="#" class="brand" aria-label="Taskora home">
+                    <span class="brand-mark">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+                    <span class="brand-name">TASKORA</span>
+                </a>
+                <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar"
+                    aria-expanded="true">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <!-- Navigation -->
+            <nav class="sidebar-nav" aria-label="Main navigation">
+                <div class="nav-section">
+                    <div class="nav-section-title">
+                        <span>MENU</span>
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="#" class="nav-item active" data-page="dashboard" aria-current="page">
+                                <i class="fa-solid fa-house"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="upcoming">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Upcoming</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="today">
+                                <i class="fa-regular fa-sun"></i>
+                                <span>Today</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="calendar">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item open-task-modal" data-page="add-task">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Add Task</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="edit-task">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span>Edit Task</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item" data-page="lists">
+                                <i class="fa-solid fa-list-check"></i>
+                                <span>Lists</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item taskora-tools-trigger" id="taskoraToolsTrigger">
+                            <span class="sidebar-icon">☰</span>
+                            <span class="sidebar-text">More</span>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- PHASE 8 & 9 TOOLS MENU -->
+
+                <!-- Custom Lists -->
+                <div class="nav-section custom-list-section">
+                    <div class="nav-section-title">
+                        <span>MY LISTS</span>
+                    </div>
+                    <div class="custom-lists-preview" id="customListsPreview">
+                        <p class="sidebar-placeholder">
+                            Your lists will appear here.
+                        </p>
+                    </div>
+                    <button class="add-list-button" id="addListButton" type="button">
+                        <span class="add-list-icon">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                        <span>Add New List</span>
+                    </button>
+                </div>
+            </nav>
+            <!-- Sidebar Bottom -->
+            <div class="sidebar-bottom">
+                <a href="#" class="sidebar-bottom-item" data-page="settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="sidebar-bottom-item" data-page="about">
+                    <i class="fa-regular fa-circle-question"></i>
+                    <span>About Taskora</span>
+                </a>
+            </div>
+            <!-- Settings और About के बाद -->
+            <div class="sidebar-auth">
+                <button id="login-btn" class="sidebar-auth-btn login-btn">
+                    <span>↪</span>
+                    <span>Login</span>
+                </button>
+                <button id="logout-btn" class="sidebar-auth-btn logout-btn">
+                    <span>↪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        <!-- =====================================================
+              MAIN APPLICATION
+          ====================================================== -->
+        <main class="main-content" id="mainContent">
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+            <header class="top-header">
+                <div class="mobile-header-left">
+                    <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <span class="mobile-brand">TASKORA</span>
+                </div>
+                <!-- Header Search -->
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="globalSearch" placeholder="Search tasks, categories, tags..."
+                        aria-label="Search tasks" autocomplete="off">
+                </div>
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <!-- Theme -->
+                    <button class="header-icon-button theme-button" id="themeToggle" type="button"
+                        aria-label="Toggle theme" title="Toggle theme">
+                        <i class="fa-regular fa-moon"></i>
+                    </button>
+                    <button id="navAllTasksBtn" class="nav-all-tasks-btn"
+                        style="background: #059669; color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; margin-right: 10px;">
+                        📋 All Tasks
+                    </button>
+                    <!-- Notifications -->
+                    <button class="header-icon-button notification-button" id="notificationButton" type="button"
+                        aria-label="Notifications" title="Notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge hidden" id="notificationBadge"
+                            aria-label="Unread notifications">
+                            0
+                        </span>
+                    </button>
+                    <!-- Profile -->
+                    <button class="profile-trigger" id="profileTrigger" type="button" aria-label="Open profile"
+                        aria-expanded="false">
+                        <span class="profile-avatar" id="headerProfileAvatar">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                        <span class="profile-name" id="headerProfileName">
+                            Alex
+                        </span>
+                        <i class="fa-solid fa-chevron-down profile-arrow"></i>
+                    </button>
+                    <!-- Profile Panel -->
+                    <div class="profile-panel" id="profilePanel" hidden>
+                        <div class="profile-panel-header">
+                            <div class="profile-panel-avatar" id="profilePanelAvatar">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 id="profilePanelName">Alex</h3>
+                                <p>My Profile</p>
+                            </div>
+                        </div>
+                        <div class="profile-panel-content">
+                            <label for="profileName">Name</label>
+                            <input type="text" id="profileName" placeholder="Enter your name">
+                            <label for="profilePassword">Password</label>
+                            <input type="password" id="profilePassword" placeholder="Enter your password">
+                            <label for="profileSlogan">Personal Slogan</label>
+                            <input type="text" id="profileSlogan" placeholder="Your personal slogan">
+                            <label for="profilePhoto">Profile Photo</label>
+                            <input type="file" id="profilePhoto" accept="image/*">
+                            <button type="button" id="saveProfileBtn">
+                                Save Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- =========================================
+                     NOTIFICATION CENTER
+                 ========================================= -->
+                <div class="notification-center" id="notificationCenter" hidden>
+                    <div class="notification-center-header">
+                        <div>
+                            <h2>Notifications</h2>
+                            <p>Stay updated with your Taskora activity.</p>
+                        </div>
+                        <button type="button" class="notification-close" id="notificationClose"
+                            aria-label="Close notifications" title="Close notifications">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="notification-center-actions">
+                        <button type="button" id="markAllNotificationsRead">
+                            Mark all as read
+                        </button>
+                        <button type="button" id="clearNotifications">
+                            Clear
+                        </button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- Notifications will be inserted here by JavaScript -->
+                    </div>
+                    <div class="notification-empty" id="notificationEmpty" hidden>
+                        <div class="notification-empty-icon">
+                            <i class="fa-regular fa-bell-slash"></i>
+                        </div>
+                        <h3>You don't have any notifications now.</h3>
+                        <p>
+                            Task reminders, completions and important updates
+                            will appear here.
+                        </p>
+                    </div>
+                </div>
+            </header>
+            <!-- =================================================
+                 DASHBOARD PAGE
+            ================================================== -->
+            <section class="page dashboard-page active-page" id="dashboardPage" data-page="dashboard">
+                <!-- Dashboard Heading -->
+                <div class="page-heading">
+                    <div>
+                        <span class="page-eyebrow">
+                            YOUR PRODUCTIVITY SPACE
+                        </span>
+                        <h1>Dashboard</h1>
+                    </div>
+                    <button class="secondary-button" id="reviewButton" type="button">
+                        <i class="fa-regular fa-star"></i>
+                        Review
+                    </button>
+                </div>
+                <!-- =================================================
+                     INTRO CARD
+                ================================================== -->
+                <section class="dashboard-intro">
+                    <div class="intro-content">
+                        <span class="intro-label">
+                            YOUR DAY, YOUR WAY
+                        </span>
+                        <h2 id="dashboardGreeting">
+                            Hi, Alex
+                        </h2>
+                        <p class="intro-slogan">
+                            Plan better. Focus smarter. Get things done.
+                        </p>
+                        <div class="intro-actions">
+                            <button class="primary-button open-task-modal" id="quickAddTask" type="button">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Task
+                            </button>
+                            <button class="text-button" id="aboutTaskoraButton" type="button">
+                                Learn about Taskora
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Illustration placeholder -->
+                    <div class="intro-illustration">
+                        <div class="illustration-glow"></div>
+                        <div class="laptop-illustration" aria-hidden="true">
+                            <div class="person-head"></div>
+                            <div class="person-body"></div>
+                            <div class="person-hair"></div>
+                            <div class="laptop">
+                                <div class="laptop-screen">
+                                    <span>✓</span>
+                                </div>
+                                <div class="laptop-base"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- =================================================
+                     STAT CARDS
+                ================================================== -->
+                <section class="section-block">
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-eyebrow">
+                                AT A GLANCE
+                            </span>
+                            <h2>Productivity Overview</h2>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <article class="stat-card stat-card-purple">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <div>
+                                <span>New Tasks</span>
+                                <strong id="newTasksCount">0</strong>
+                            </div>
+                        </article>
+                        <article class="stat-card stat-card-pink">
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <span>In Process</span>
+                                <strong id="inProcessCount">0</strong>
+                            </div>
+                        </article>
+                        <article class="stat-card stat-card-blue">
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-circle-check"></i>
+                            </div>
+                            <div>
+                                <span>Completed</span>
+                                <strong id="completedCount">0</strong>
+                            </div>
+                        </article>
+                        <article class="stat-card stat-card-lavender">
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-calendar"></i>
+                            </div>
+                            <div>
+                                <span>Upcoming</span>
+                                <strong id="upcomingCount">0</strong>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                <!-- =================================================
+                     PRODUCTIVITY GRID
+                ================================================== -->
+                <section class="dashboard-grid">
+                    <!-- Progress -->
+                    <article class="dashboard-card progress-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="card-eyebrow">
+                                    PROGRESS
+                                </span>
+                                <h3>Productivity Score</h3>
+                            </div>
+                            <i class="fa-solid fa-chart-line card-header-icon"></i>
+                        </div>
+                        <div class="progress-content">
+                            <div class="progress-ring">
+                                <span id="productivityScore">0%</span>
+                            </div>
+                            <div class="progress-details">
+                                <p>
+                                    Complete tasks consistently to build
+                                    your productivity score.
+                                </p>
+                                <div class="progress-bar">
+                                    <span id="productivityProgress" style="width: 0%;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Today -->
+                    <article class="dashboard-card today-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="card-eyebrow">
+                                    TODAY
+                                </span>
+                                <h3>Today's Tasks</h3>
+                            </div>
+                            <button class="card-link-button" type="button" data-page="today">
+                                View all
+                            </button>
+                        </div>
+                        <div class="task-preview-list" id="todayTaskPreview">
+                            <div class="empty-state compact">
+                                <i class="fa-regular fa-sun"></i>
+                                <p>No tasks for today.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Upcoming -->
+                    <article class="dashboard-card upcoming-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="card-eyebrow">
+                                    NEXT
+                                </span>
+                                <h3>Upcoming</h3>
+                            </div>
+                            <button class="card-link-button" type="button" data-page="upcoming">
+                                More
+                            </button>
+                        </div>
+                        <div class="task-preview-list" id="upcomingTaskPreview">
+                            <div class="empty-state compact">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p>Nothing scheduled yet.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Focus -->
+                    <article class="dashboard-card focus-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="card-eyebrow">
+                                    FOCUS
+                                </span>
+                                <h3>Focus Time</h3>
+                            </div>
+                            <i class="fa-solid fa-bullseye card-header-icon"></i>
+                        </div>
+                        <div class="focus-stat">
+                            <strong id="focusTime">0 min</strong>
+                            <span>Total focus time</span>
+                        </div>
+                        <div class="mini-stat-row">
+                            <div>
+                                <strong id="currentStreak">0</strong>
+                                <span>Day streak</span>
+                            </div>
+                            <div>
+                                <strong id="bestStreak">0</strong>
+                                <span>Best streak</span>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                <!-- =================================================
+                     PRIORITY SECTION
+                ================================================== -->
+                <section class="section-block">
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-eyebrow">
+                                PRIORITIES
+                            </span>
+                            <h2>What Needs Attention</h2>
+                        </div>
+                    </div>
+                    <div class="priority-grid">
+                        <article class="priority-card urgent-card">
+                            <div class="priority-card-header">
+                                <div class="priority-icon">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <span>URGENT</span>
+                                    <h3>Urgent Tasks</h3>
+                                </div>
+                            </div>
+                            <div class="priority-task-list" id="urgentTaskList">
+                                <p class="empty-message">
+                                    No urgent tasks.
+                                </p>
+                            </div>
+                        </article>
+                        <article class="priority-card high-card">
+                            <div class="priority-card-header">
+                                <div class="priority-icon">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <span>HIGH PRIORITY</span>
+                                    <h3>High Priority Tasks</h3>
+                                </div>
+                            </div>
+                            <div class="priority-task-list" id="highPriorityTaskList">
+                                <p class="empty-message">
+                                    No high-priority tasks.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                <!-- =================================================
+                     DASHBOARD INSIGHTS & PRIORITY
+                ================================================== -->
+                <section class="dashboard-main-grid" id="dashboardExtraCards">
+                    <article class="dashboard-card productivity-card">
+                        <div class="card-heading">
+                            <div>
+                                <span class="card-eyebrow">INSIGHTS</span>
+                                <h3>Productivity</h3>
+                            </div>
+                            <span class="productivity-score-label">
+                                Score
+                                <strong id="productivityScore">0</strong>
+                            </span>
+                        </div>
+                        <div class="progress-ring-area">
+                            <div class="progress-ring">
+                                <div class="progress-ring-inner">
+                                    <strong id="completionPercentage">0%</strong>
+                                    <span>Complete</span>
+                                </div>
+                            </div>
+                            <div class="productivity-details">
+                                <div>
+                                    <span>Total</span>
+                                    <strong id="totalTasksCount">0</strong>
+                                </div>
+                                <div>
+                                    <span>Completed</span>
+                                    <strong id="productivityCompletedCount">0</strong>
+                                </div>
+                                <div>
+                                    <span>Pending</span>
+                                    <strong id="productivityPendingCount">0</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="dashboard-card priority-card">
+                        <div class="card-heading">
+                            <div>
+                                <span class="card-eyebrow">PRIORITY</span>
+                                <h3>Priority Tasks</h3>
+                            </div>
+                        </div>
+                        <div class="priority-section">
+                            <div class="priority-block priority-urgent">
+                                <div class="priority-title">
+                                    <span class="priority-dot"></span>
+                                    <strong>Urgent</strong>
+                                </div>
+                                <div id="urgentTaskPreview" class="priority-task-list">
+                                    <small>No urgent tasks.</small>
+                                </div>
+                            </div>
+                            <div class="priority-block priority-high">
+                                <div class="priority-title">
+                                    <span class="priority-dot"></span>
+                                    <strong>High Priority</strong>
+                                </div>
+                                <div id="highTaskPreview" class="priority-task-list">
+                                    <small>No high-priority tasks.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+                <section class="dashboard-summary-grid">
+                    <article class="summary-card streak-card">
+                        <div class="summary-icon">🔥</div>
+                        <div>
+                            <span>Current Streak</span>
+                            <strong id="currentStreak">0 days</strong>
+                        </div>
+                    </article>
+                    <article class="summary-card weekly-card">
+                        <div class="summary-icon">📊</div>
+                        <div>
+                            <span>Weekly Tasks</span>
+                            <strong id="weeklyTasksCount">0</strong>
+                        </div>
+                    </article>
+                    <article class="summary-card focus-card">
+                        <div class="summary-icon">🎯</div>
+                        <div>
+                            <span>Focus Time</span>
+                            <strong id="focusTimeSummary">0 min</strong>
+                        </div>
+                    </article>
+                    <article class="summary-card reminder-card">
+                        <div class="summary-icon">🔔</div>
+                        <div>
+                            <span>Reminders</span>
+                            <strong id="reminderCount">0</strong>
+                        </div>
+                    </article>
+                </section>
+                <!-- =================================================
+                     EMPTY STATE
+                ================================================== -->
+                <section class="dashboard-empty-state" id="dashboardEmptyState">
+                    <div class="empty-illustration">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h2>Start with your first task</h2>
+                    <p>
+                        Create a task and Taskora will help you organize
+                        your day.
+                    </p>
+                    <button class="primary-button open-task-modal" type="button" id="emptyStateAddTask">
+                        <i class="fa-solid fa-plus"></i>
+                        Create First Task
+                    </button>
+                </section>
+            </section>
+            <!-- =================================================
+                 PAGE PLACEHOLDER
+                 Future phases will activate these areas.
+            ================================================== -->
+            <section class="page-placeholder" id="futurePageContainer" aria-live="polite">
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h2>Taskora workspace</h2>
+                    <p>
+                        This area is ready for the next Taskora phase.
+                    </p>
+                </div>
+            </section>
+            <!-- =========================================================
+                EDIT TASK PAGE
+                   ========================================================= -->
+            <section class="page task-page" id="editTaskPage" data-page="edit-task">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="page-eyebrow">TASK MANAGEMENT</span>
+                        <h1>Edit Task</h1>
+                        <p>Select a task below to edit its details.</p>
+                    </div>
+                </div>
+
+                <div class="edit-task-layout">
+
+                    <!-- Existing Tasks List -->
+                    <div class="edit-task-list-card">
+
+                        <div class="edit-task-list-header">
+                            <div>
+                                <span class="section-eyebrow">YOUR TASKS</span>
+                                <h2>Existing Tasks</h2>
+                            </div>
+
+                            <span id="editTaskCount">0 tasks</span>
+                        </div>
+
+                        <div id="editTaskList" class="edit-task-list">
+
+                            <!-- Tasks will be generated by JavaScript -->
+
+                            <div class="edit-task-empty" id="editTaskEmpty">
+
+                                <div class="edit-task-empty-icon">
+                                    <i class="fa-regular fa-clipboard"></i>
+                                </div>
+
+                                <h3>No tasks available</h3>
+
+                                <p>
+                                    Create a task first and it will appear here.
+                                </p>
+
+                                <button type="button" class="primary-button open-task-modal" id="editPageAddTaskBtn">
+
+                                    <i class="fa-solid fa-plus"></i>
+                                    Create Task
+
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- =========================================================
+                    MOBILE OVERLAY
+                ========================================================== -->
+            <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+            <!-- =========================================================
+                    GLOBAL MODAL FOUNDATION
+                ========================================================== -->
+            <div class="modal-backdrop" id="globalModal" aria-hidden="true">
+                <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                    <div class="modal-header">
+                        <div>
+                            <span class="modal-eyebrow">TASKORA</span>
+                            <h2 id="modalTitle">Taskora</h2>
+                        </div>
+                        <button class="modal-close" id="modalClose" type="button" aria-label="Close modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modalBody"></div>
+                </div>
+            </div>
+            <!-- =========================================================
+                  TOAST CONTAINER
+                 ========================================================== -->
+            <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+            <!-- =========================================================
+                 LOGIN MODAL
+                 ========================================================== -->
+            <div id="login-modal" class="login-modal" aria-hidden="true">
+                <div class="login-modal-backdrop" id="login-modal-backdrop"></div>
+                <div class="login-modal-box" role="dialog" aria-modal="true" aria-labelledby="loginModalHeading">
+                    <button id="login-close" class="login-close" aria-label="Close login">
+                        ×
+                    </button>
+                    <div class="login-icon">
+                        🔐
+                    </div>
+                    <h2 id="loginModalHeading">Welcome Back</h2>
+                    <p>
+                        Login to continue using Taskora.
+                    </p>
+                    <form id="login-form">
+                        <label for="login-name">
+                            Name
+                        </label>
+                        <input type="text" id="login-name" placeholder="Enter your name" required>
+                        <label for="login-password">
+                            Password
+                        </label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                        <p id="login-error" class="login-error"></p>
+                        <button type="submit" class="login-submit-btn">
+                            Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- =========================================================
+                 CUSTOM LIST MODAL (CREATE / EDIT LIST)
+                 ========================================================== -->
+            <div id="listModal" class="list-modal" aria-hidden="true">
+                <div class="list-modal-backdrop" id="listModalBackdrop"></div>
+                <div class="list-modal-box" role="dialog" aria-modal="true" aria-labelledby="listModalTitle">
+                    <button id="listModalClose" class="list-modal-close" type="button" aria-label="Close list modal">
+                        ×
+                    </button>
+                    <div class="list-modal-icon">📝</div>
+                    <h2 id="listModalTitle">Create New List</h2>
+                    <p>Enter a title and text/items to organize your list.</p>
+                    <form id="listForm" novalidate>
+                        <input type="hidden" id="editingListId" value="">
+                        <div class="list-form-field">
+                            <label for="listModalTitleInput">List Title</label>
+                            <input type="text" id="listModalTitleInput" placeholder="e.g. Shopping List, Study Topics, Ideas..." required>
+                        </div>
+                        <div class="list-form-field">
+                            <label for="listModalTextInput">List Content / Items (one per line)</label>
+                            <textarea id="listModalTextInput" rows="5" placeholder="Item 1&#10;Item 2&#10;Item 3..."></textarea>
+                        </div>
+                        <div class="list-modal-actions">
+                            <button type="button" id="listModalCancelBtn" class="secondary-button">Cancel</button>
+                            <button type="submit" id="listModalSaveBtn" class="primary-button">Save List</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Phase 10: Global UI -->
+            <div id="global-loading" class="global-loading" aria-hidden="true">
+                <div class="loading-spinner"></div>
+            </div>
+            <div id="confirm-modal" class="final-modal" aria-hidden="true">
+                <div class="final-modal-backdrop" data-close-confirm></div>
+                <div class="final-modal-box" role="dialog" aria-modal="true">
+                    <button class="final-modal-close" id="confirm-close" aria-label="Close confirmation">
+                        &times;
+                    </button>
+                    <div class="final-modal-icon">!</div>
+                    <h3 id="confirm-title">Are you sure?</h3>
+                    <p id="confirm-message">
+                        This action cannot be undone.
+                    </p>
+                    <div class="final-modal-actions">
+                        <button class="secondary-btn" id="confirm-cancel">
+                            Cancel
+                        </button>
+                        <button class="danger-btn" id="confirm-action">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Accessibility shortcut -->
+            <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top" title="Back to top">
+                ↑
+            </button>
+            <!-- Completion Celebration -->
+            <div id="completion-celebration" class="completion-celebration" aria-hidden="true">
+                <div class="celebration-backdrop"></div>
+                <div class="celebration-content">
+                    <div class="party-icon">🎉</div>
+                    <h2>Task Completed!</h2>
+                    <p>Great work. Keep going!</p>
+                    <div class="celebration-confetti" aria-hidden="true">
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                        <span>✦</span>
+                    </div>
+                </div>
+            </div>
+
+<!-- phase3 -->
+
+            <div class="taskora-modal" id="taskModal" aria-hidden="true">
+                <div class="task-modal-backdrop" data-close-task-modal></div>
+                <div class="task-modal-content" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+                    <div class="task-modal-header">
+                        <div>
+                            <span class="card-eyebrow">TASK MANAGEMENT</span>
+                            <h2 id="taskModalTitle">Create New Task</h2>
+                            <p id="taskDraftStatus"></p>
+                        </div>
+                        <button type="button" class="modal-close-button" id="closeTaskModal"
+                            aria-label="Close task modal">
+                            ×
+                        </button>
+                    </div>
+                    <form id="taskForm" novalidate>
+                        <input type="hidden" id="editingTaskId" value="">
+                        <div class="task-form-grid">
+                            <div class="task-form-field full-width">
+                                <label for="taskTitle">
+                                    Task Title
+                                </label>
+                                <input type="text" id="taskTitle" name="title" maxlength="120"
+                                    placeholder="What needs to be done?" required>
+                                <small class="task-field-error" id="taskTitleError"></small>
+                            </div>
+                            <div class="task-form-field full-width">
+                                <label for="taskDescription">
+                                    Description
+                                </label>
+                                <textarea id="taskDescription" name="description" rows="4" maxlength="1000"
+                                    placeholder="Add details, notes or emojis..."></textarea>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskCategory">
+                                    Category
+                                </label>
+                                <select id="taskCategory">
+                                    <option value="Personal">
+                                        Personal
+                                    </option>
+                                    <option value="Study">
+                                        Study
+                                    </option>
+                                    <option value="Work">
+                                        Work
+                                    </option>
+                                    <option value="Important">
+                                        Important
+                                    </option>
+                                    <option value="Other">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskCustomCategory">
+                                    Custom Category
+                                </label>
+                                <div class="inline-input-group">
+                                    <input type="text" id="taskCustomCategory" placeholder="Create category"
+                                        maxlength="40">
+                                    <button type="button" class="small-action-button" id="createCategoryBtn">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="task-form-field full-width">
+                                <label for="taskTags">
+                                    Tags
+                                </label>
+                                <input type="text" id="taskTags" placeholder="#study, #college, #project">
+                                <small class="form-hint">
+                                    Separate multiple tags using commas.
+                                </small>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskPriority">
+                                    Priority
+                                </label>
+                                <select id="taskPriority">
+                                    <option value="Urgent">Urgent</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium" selected>Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskEstimatedTime">
+                                    Estimated Time
+                                </label>
+                                <select id="taskEstimatedTime">
+                                    <option value="15">15 minutes</option>
+                                    <option value="30">30 minutes</option>
+                                    <option value="45">45 minutes</option>
+                                    <option value="60">1 hour</option>
+                                    <option value="90">1.5 hours</option>
+                                    <option value="120">2 hours</option>
+                                </select>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskDueDate">
+                                    Due Date
+                                </label>
+                                <input type="date" id="taskDueDate">
+                                <small class="task-field-error" id="taskDateError"></small>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskTime">
+                                    Time
+                                </label>
+                                <input type="time" id="taskTime">
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskReminder">
+                                    Reminder
+                                </label>
+                                <select id="taskReminder">
+                                    <option value="">
+                                        No reminder
+                                    </option>
+                                    <option value="5">
+                                        5 minutes before
+                                    </option>
+                                    <option value="15">
+                                        15 minutes before
+                                    </option>
+                                    <option value="30">
+                                        30 minutes before
+                                    </option>
+                                    <option value="60">
+                                        1 hour before
+                                    </option>
+                                    <option value="1440">
+                                        1 day before
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="task-form-field">
+                                <label for="taskRecurrence">
+                                    Recurring Task
+                                </label>
+                                <select id="taskRecurrence">
+                                    <option value="none">
+                                        No recurrence
+                                    </option>
+                                    <option value="daily">
+                                        Daily
+                                    </option>
+                                    <option value="weekly">
+                                        Weekly
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="task-smart-suggestion" id="taskSmartSuggestion">
+                            <span>💡</span>
+                            <div>
+                                <strong>Smart suggestion</strong>
+                                <p id="smartSuggestionText">
+                                    Add a title and due date to receive helpful suggestions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="task-form-actions">
+                            <button type="button" class="secondary-button" id="saveTaskDraftBtn">
+                                Save Draft
+                            </button>
+                            <button type="button" class="text-button" id="cancelTaskBtn">
+                                Cancel
+                            </button>
+                            <button type="submit" class="primary-button" id="saveTaskBtn">
+                                Create Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- =========================
+                PHASE 4 — CALENDAR + TASKS
+                  ========================= -->
+            <section class="taskora-calendar-section" id="calendarSection">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">Good things are coming</span>
+                        <h2>Calendar</h2>
+                        <p>Plan your tasks and keep track of important dates.</p>
+                    </div>
+                    <div class="calendar-actions">
+                        <button type="button" class="calendar-nav-btn" id="calendarPrevBtn" aria-label="Previous month">
+                            &#10094
+                        </button>
+                        <h3 id="calendarMonthTitle">Month Year</h3>
+                        <button type="button" class="calendar-nav-btn" id="calendarNextBtn" aria-label="Next month">
+                            &#10095
+                        </button>
+                    </div>
+                </div>
+                <div class="calendar-layout">
+                    <!-- Calendar -->
+                    <div class="calendar-card">
+                        <div class="calendar-weekdays">
+                            <span>Sun</span>
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                        </div>
+                        <div class="calendar-grid" id="taskoraCalendarGrid">
+                            <!-- Dates generated by JavaScript -->
+                        </div>
+                    </div>
+                    <!-- Selected Date -->
+                    <div class="selected-date-card">
+                        <div class="selected-date-header">
+                            <div>
+                                <span class="section-label">Selected Date</span>
+                                <h3 id="selectedDateTitle">Select a date</h3>
+                            </div>
+                            <span class="selected-date-icon">📅</span>
+                        </div>
+                        <div id="selectedDateTasks" class="selected-date-tasks">
+                            <div class="calendar-empty-state">
+                                <span>📋</span>
+                                <p>Nothing scheduled for this date.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Today's Tasks -->
+                <div class="calendar-task-section">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <span class="section-label">Today</span>
+                            <h2>Today's Tasks</h2>
+                        </div>
+                        <button type="button" class="small-action-btn" id="viewAllTodayBtn">
+                            View All →
+                        </button>
+                    </div>
+                    <div id="todayTasksContainer" class="taskora-task-grid">
+                        <div class="calendar-empty-state">
+                            <span>☀️</span>
+                            <p>No tasks scheduled for today.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Weekly Tasks -->
+                <div class="calendar-task-section">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <span class="section-label">This Week</span>
+                            <h2>Weekly Tasks</h2>
+                        </div>
+                        <button type="button" class="small-action-btn" id="viewAllWeeklyBtn">
+                            More →
+                        </button>
+                    </div>
+                    <div id="weeklyTasksContainer" class="taskora-task-grid">
+                        <div class="calendar-empty-state">
+                            <span>📆</span>
+                            <p>No weekly tasks yet.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Upcoming -->
+                <div class="calendar-task-section">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <span class="section-label">Coming Soon</span>
+                            <h2>Upcoming</h2>
+                        </div>
+                    </div>
+                    <div id="upcomingTimeline" class="upcoming-timeline">
+                        <div class="calendar-empty-state">
+                            <span>🚀</span>
+                            <p>No upcoming tasks.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================
+                TASK DETAILS MODAL
+                ========================= -->
+            <div class="taskora-modal" id="taskDetailsModal" aria-hidden="true">
+                <div class="taskora-modal-overlay" data-close-task-modal></div>
+                <div class="taskora-modal-content">
+                    <button type="button" class="modal-close-btn" id="closeTaskDetailsModal"
+                        aria-label="Close task details">
+                        &times
+                    </button>
+                    <div class="task-details-header">
+                        <span class="task-details-category" id="detailsCategory">
+                            Category
+                        </span>
+                        <span class="task-details-priority" id="detailsPriority">
+                            Priority
+                        </span>
+                    </div>
+                    <h2 id="detailsTaskTitle">Task Title</h2>
+                    <p id="detailsTaskDescription">
+                        Task description
+                    </p>
+                    <div class="task-details-info">
+                        <div>
+                            <span>📅</span>
+                            <strong>Date</strong>
+                            <p id="detailsDueDate">—</p>
+                        </div>
+                        <div>
+                            <span>⏰</span>
+                            <strong>Time</strong>
+                            <p id="detailsTime">—</p>
+                        </div>
+                        <div>
+                            <span>🔔</span>
+                            <strong>Reminder</strong>
+                            <p id="detailsReminder">—</p>
+                        </div>
+                        <div>
+                            <span>🎯</span>
+                            <strong>Status</strong>
+                            <p id="detailsStatus">—</p>
+                        </div>
+                    </div>
+                    <div class="task-details-tags" id="detailsTags"></div>
+                    <div class="task-details-actions">
+                        <button type="button" class="task-action-btn edit" id="detailsEditBtn">
+                            ✏️ Edit
+                        </button>
+                        <button type="button" class="task-action-btn complete" id="detailsCompleteBtn">
+                            ✓ Complete
+                        </button>
+                        <button type="button" class="task-action-btn delete" id="detailsDeleteBtn">
+                            🗑 Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- =========================================
+                 PHASE 5 — PROGRESS + FOCUS
+              ========================================= -->
+            <section class="taskora-progress-section" id="progressSection">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-label">Your productivity</span>
+                        <h2>Progress & Focus</h2>
+                        <p>Understand your work pattern and improve your focus.</p>
+                    </div>
+                </div>
+                <!-- Productivity Overview -->
+                <div class="progress-overview-grid">
+                    <article class="progress-main-card">
+                        <div class="progress-card-header">
+                            <div>
+                                <span class="section-label">Productivity Score</span>
+                                <h3 id="productivityScore">0%</h3>
+                            </div>
+                            <span class="progress-icon">📊</span>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar" id="productivityProgressBar">
+                            </div>
+                        </div>
+                        <p id="productivityMessage">
+                            Start completing tasks to build your productivity score.
+                        </p>
+                    </article>
+                    <article class="progress-stat-card">
+                        <span class="progress-stat-icon">✓</span>
+                        <div>
+                            <span>Completed</span>
+                            <strong id="progressCompletedTasks">0</strong>
+                        </div>
+                    </article>
+                    <article class="progress-stat-card">
+                        <span class="progress-stat-icon">⏳</span>
+                        <div>
+                            <span>Pending</span>
+                            <strong id="progressPendingTasks">0</strong>
+                        </div>
+                    </article>
+                    <article class="progress-stat-card">
+                        <span class="progress-stat-icon">🔥</span>
+                        <div>
+                            <span>Current Streak</span>
+                            <strong id="progressCurrentStreak">0 days</strong>
+                        </div>
+                    </article>
+                    <article class="progress-stat-card">
+                        <span class="progress-stat-icon">🏆</span>
+                        <div>
+                            <span>Best Streak</span>
+                            <strong id="progressBestStreak">0 days</strong>
+                        </div>
+                    </article>
+                </div>
+                <!-- Focus Timer -->
+                <div class="focus-section">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <span class="section-label">Deep work</span>
+                            <h2>Focus Timer</h2>
+                        </div>
+                    </div>
+                    <div class="focus-layout">
+                        <article class="focus-timer-card">
+                            <div class="focus-mode">
+                                <span id="focusStatus">Ready to focus</span>
+                            </div>
+                            <div class="focus-timer" id="focusTimerDisplay">
+                                25:00
+                            </div>
+                            <div class="focus-controls">
+                                <button type="button" class="focus-btn primary" id="focusStartBtn">
+                                    Start
+                                </button>
+                                <button type="button" class="focus-btn" id="focusPauseBtn">
+                                    Pause
+                                </button>
+                                <button type="button" class="focus-btn" id="focusResetBtn">
+                                    Reset
+                                </button>
+                            </div>
+                            <div class="focus-session-info">
+                                <div>
+                                    <span>Sessions</span>
+                                    <strong id="focusSessionCount">0</strong>
+                                </div>
+                                <div>
+                                    <span>Focus Time</span>
+                                    <strong id="focusTotalTime">0 min</strong>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Time Comparison -->
+                        <article class="time-comparison-card">
+                            <div class="section-card-title">
+                                <span class="section-label">
+                                    Time Tracking
+                                </span>
+                                <h3>Estimated vs Actual</h3>
+                            </div>
+                            <div class="time-comparison-row">
+                                <div>
+                                    <span>Estimated</span>
+                                    <strong id="estimatedTotalTime">
+                                        0 min
+                                    </strong>
+                                </div>
+                                <div>
+                                    <span>Actual</span>
+                                    <strong id="actualTotalTime">
+                                        0 min
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="comparison-progress">
+                                <div id="actualTimeProgress" class="comparison-progress-fill">
+                                </div>
+                            </div>
+                            <p id="timeTrackingMessage">
+                                Add estimated and actual time to your tasks
+                                to track your progress.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <!-- Productivity Insights -->
+                <div class="insights-section">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <span class="section-label">
+                                Insights
+                            </span>
+                            <h2>Productivity Insights</h2>
+                        </div>
+                    </div>
+                    <div class="insights-grid">
+                        <article class="insight-card">
+                            <span class="insight-icon">📅</span>
+                            <div>
+                                <span>Most Productive Day</span>
+                                <strong id="mostProductiveDay">
+                                    Not enough data
+                                </strong>
+                            </div>
+                        </article>
+                        <article class="insight-card">
+                            <span class="insight-icon">📚</span>
+                            <div>
+                                <span>Most Used Category</span>
+                                <strong id="mostUsedCategory">
+                                    Not enough data
+                                </strong>
+                            </div>
+                        </article>
+                        <article class="insight-card">
+                            <span class="insight-icon">🎯</span>
+                            <div>
+                                <span>Common Priority</span>
+                                <strong id="commonPriority">
+                                    Not enough data
+                                </strong>
+                            </div>
+                        </article>
+                        <article class="insight-card">
+                            <span class="insight-icon">⏱️</span>
+                            <div>
+                                <span>Total Focus Time</span>
+                                <strong id="insightFocusTime">
+                                    0 min
+                                </strong>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <!-- ================================
+              TASKORA PHASE 6
+               SEARCH + ORGANIZATION
+              ================================ -->
+            <section class="taskora-p6-search-panel" id="taskoraP6SearchPanel">
+                <div class="taskora-p6-search-header">
+                    <div>
+                        <span class="taskora-section-label">ORGANIZE</span>
+                        <h2>Find Your Tasks</h2>
+                        <p>Search, filter and organize your tasks easily.</p>
+                    </div>
+                    <button type="button" class="taskora-p6-clear-btn" id="taskoraP6ClearFilters">
+                        Clear
+                    </button>
+                </div>
+                <!-- Search Suggestions -->
+                <div class="taskora-p6-suggestions" id="taskoraP6Suggestions">
+                    <button type="button" data-search="today">
+                        Today
+                    </button>
+                    <button type="button" data-search="upcoming">
+                        Upcoming
+                    </button>
+                    <button type="button" data-search="urgent">
+                        Urgent
+                    </button>
+                    <button type="button" data-search="high priority">
+                        High Priority
+                    </button>
+                    <button type="button" data-search="completed">
+                        Completed
+                    </button>
+                    <button type="button" data-search="pending">
+                        Pending
+                    </button>
+                    <button type="button" data-search="overdue">
+                        Overdue
+                    </button>
+                </div>
+                <!-- Filters -->
+                <div class="taskora-p6-filters">
+                    <div class="taskora-p6-filter-group">
+                        <label for="taskoraP6CategoryFilter">
+                            Category
+                        </label>
+                        <select id="taskoraP6CategoryFilter">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+                    <div class="taskora-p6-filter-group">
+                        <label for="taskoraP6PriorityFilter">
+                            Priority
+                        </label>
+                        <select id="taskoraP6PriorityFilter">
+                            <option value="all">All Priorities</option>
+                            <option value="Urgent">Urgent</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="taskora-p6-filter-group">
+                        <label for="taskoraP6StatusFilter">
+                            Status
+                        </label>
+                        <select id="taskoraP6StatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="overdue">Overdue</option>
+                        </select>
+                    </div>
+                    <div class="taskora-p6-filter-group">
+                        <label for="taskoraP6SortFilter">
+                            Sort By
+                        </label>
+                        <select id="taskoraP6SortFilter">
+                            <option value="default">Default</option>
+                            <option value="priority">Priority</option>
+                            <option value="dueDate">Due Date</option>
+                            <option value="az">A-Z</option>
+                            <option value="status">Status</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Active Filters -->
+                <div class="taskora-p6-active-filters" id="taskoraP6ActiveFilters">
+                </div>
+                <!-- Search Result Summary -->
+                <div class="taskora-p6-result-header">
+                    <div>
+                        <h3>Search Results</h3>
+                        <span id="taskoraP6ResultCount">
+                            0 tasks
+                        </span>
+                    </div>
+                </div>
+                <!-- Search Results -->
+                <div class="taskora-p6-results" id="taskoraP6Results">
+                    <div class="taskora-p6-empty-state">
+                        <div class="taskora-p6-empty-icon">
+                            🔍
+                        </div>
+                        <h3>No matching tasks</h3>
+                        <p>
+                            Try searching for a task, category, tag or priority.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================
+                TASKORA PHASE 7
+              NOTIFICATION CENTER
+                  ========================================= -->
+            <section class="taskora-p7-notification-panel" id="taskoraP7NotificationPanel">
+                <div class="taskora-p7-header">
+                    <div>
+                        <span class="taskora-section-label">
+                            NOTIFICATIONS
+                        </span>
+                        <h2>Notification Center</h2>
+                        <p>
+                            Stay updated with your tasks and reminders.
+                        </p>
+                    </div>
+                    <button type="button" id="taskoraP7MarkAllRead" class="taskora-p7-mark-read">
+                        Mark all as read
+                    </button>
+                </div>
+                <!-- Notification Tabs -->
+                <div class="taskora-p7-tabs">
+                    <button type="button" class="taskora-p7-tab active" data-notification-filter="all">
+                        All
+                    </button>
+                    <button type="button" class="taskora-p7-tab" data-notification-filter="unread">
+                        Unread
+                    </button>
+                    <button type="button" class="taskora-p7-tab" data-notification-filter="today">
+                        Today
+                    </button>
+                </div>
+                <!-- Notifications -->
+                <div class="taskora-p7-list" id="taskoraP7NotificationList">
+                    <div class="taskora-p7-empty">
+                        <div class="taskora-p7-empty-icon">
+                            🔔
+                        </div>
+                        <h3>
+                            You have no notifications currently.
+                        </h3>
+                        <p>
+                            Task reminders and important updates will appear here.
+                        </p>
+                    </div>
+                </div>
+            </section>
+                    <!-- =========================
+                 ABOUT TASKORA SECTION (FAQ)
+                 ========================= -->
+            <section class="about-taskora-card" id="aboutTaskoraSection">
+                <div class="about-header">
+                    <div>
+                        <span class="card-eyebrow">ABOUT</span>
+                        <h2>About Taskora</h2>
+                    </div>
+                </div>
+                <p class="about-description">
+                    Taskora is a personal productivity workspace designed to help you
+                    organize tasks, manage your schedule, track progress and build
+                    better productivity habits.
+                </p>
+                <div class="about-feature-grid">
+                    <div class="about-feature">
+                        <span>✓</span>
+                        <div>
+                            <strong>Task Management</strong>
+                            <small>Create, organize and complete tasks.</small>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <span>📅</span>
+                        <div>
+                            <strong>Calendar</strong>
+                            <small>Plan tasks around your schedule.</small>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <span>🔔</span>
+                        <div>
+                            <strong>Reminders</strong>
+                            <small>Keep important tasks on your radar.</small>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <span>📊</span>
+                        <div>
+                            <strong>Productivity Insights</strong>
+                            <small>Understand your progress using real data.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-section">
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>What is Taskora?</span>
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Taskora is a productivity application for organizing
+                            tasks, schedules, reminders and personal progress.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>Does Taskora save my tasks?</span>
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. Taskora uses browser storage so your local task data
+                            can remain available after refreshing the application.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>Can I use Taskora in dark mode?</span>
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. You can switch between light and dark themes using
+                            the theme control in the header.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- =========================================
+     TASKORA — EDIT TASK PAGE
+========================================= -->
+    <!-- <section
+    class="taskora-edit-task-page taskora-page-hidden"
+    id="editTaskPage"
+    data-section="edit-task"
+    aria-hidden="true"
+>
+    <div class="section-heading">
+        <div>
+            <span class="section-label">TASK MANAGEMENT</span>
+            <h2>Edit Task</h2>
+            <p>Select a task below to edit its details.</p>
+        </div>
+    </div>
+    <div class="edit-task-layout">
+        <!-- Existing Tasks List -->
+    <!-- <div class="edit-task-list-card">
+            <div class="edit-task-list-header">
+                <div>
+                    <span class="section-label">EXISTING TASKS</span>
+                    <h3>Your Tasks</h3>
+                </div>
+                <span id="editTaskCount">
+                    0 tasks
+                </span>
+            </div>
+            <div
+                id="editTaskList"
+                class="edit-task-list"
+            >
+                <div class="calendar-empty-state">
+                    <span>📋</span>
+                    <p>No tasks available to edit.</p>
+                </div>
+            </div>
+        </div> -->
+    <!-- Edit Form -->
+    <!--  <div
+            class="edit-task-form-card"
+            id="editTaskFormCard"
+        >
+            <div class="edit-task-form-header">
+                <div>
+                    <span class="section-label">
+                        EDIT DETAILS
+                    </span>
+                    <h3 id="editTaskSelectedTitle">
+                        Select a task
+                    </h3>
+                </div>
+            </div>
+            <form
+                id="editExistingTaskForm"
+                novalidate
+            >
+                <input
+                    type="hidden"
+                    id="editExistingTaskId"
+                >
+                <div class="task-form-grid">
+                    <div class="task-form-field full-width">
+                        <label for="editExistingTaskTitle">
+                            Task Title
+                        </label>
+                        <input
+                            type="text"
+                            id="editExistingTaskTitle"
+                            maxlength="120"
+                            placeholder="What needs to be done?"
+                            required
+                        >
+                    </div>
+                    <div class="task-form-field full-width">
+                        <label for="editExistingTaskDescription">
+                            Description
+                        </label>
+                        <textarea
+                            id="editExistingTaskDescription"
+                            rows="4"
+                            maxlength="1000"
+                            placeholder="Add details..."
+                        ></textarea>
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskCategory">
+                            Category
+                        </label>
+                        <select id="editExistingTaskCategory">
+                            <option value="Personal">
+                                Personal
+                            </option>
+                            <option value="Study">
+                                Study
+                            </option>
+                            <option value="Work">
+                                Work
+                            </option>
+                            <option value="Important">
+                                Important
+                            </option>
+                            <option value="Other">
+                                Other
+                            </option>
+                        </select>
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskPriority">
+                            Priority
+                        </label>
+                        <select id="editExistingTaskPriority">
+                            <option value="Urgent">
+                                Urgent
+                            </option>
+                            <option value="High">
+                                High
+                            </option>
+                            <option value="Medium">
+                                Medium
+                            </option>
+                            <option value="Low">
+                                Low
+                            </option>
+                        </select>
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskEstimatedTime">
+                            Estimated Time
+                        </label>
+                        <select id="editExistingTaskEstimatedTime">
+                            <option value="15">
+                                15 minutes
+                            </option>
+                            <option value="30">
+                                30 minutes
+                            </option>
+                            <option value="45">
+                                45 minutes
+                            </option>
+                            <option value="60">
+                                1 hour
+                            </option>
+                            <option value="90">
+                                1.5 hours
+                            </option>
+                            <option value="120">
+                                2 hours
+                            </option>
+                        </select>
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskDueDate">
+                            Due Date
+                        </label>
+                        <input
+                            type="date"
+                            id="editExistingTaskDueDate"
+                        >
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskTime">
+                            Time
+                        </label>
+                        <input
+                            type="time"
+                            id="editExistingTaskTime"
+                        >
+                    </div>
+                    <div class="task-form-field">
+                        <label for="editExistingTaskReminder">
+                            Reminder
+                        </label>
+                        <select id="editExistingTaskReminder">
+                            <option value="">
+                                No reminder
+                            </option>
+                            <option value="5">
+                                5 minutes before
+                            </option>
+                            <option value="15">
+                                15 minutes before
+                            </option>
+                            <option value="30">
+                                30 minutes before
+                            </option>
+                            <option value="60">
+                                1 hour before
+                            </option>
+                            <option value="1440">
+                                1 day before
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="task-form-actions">
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="editTaskCancelBtn"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="editTaskSaveBtn"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>  -->
+    <!-- Success Celebration Overlay -->
+    <div id="celebrationOverlay" class="celebration-overlay">
+        <div class="celebration-content">
+            <div class="party-emoji">🎉🥳✨</div>
+            <h3>Your Task Has Been Created!</h3>
+            <p>Task created successfully!</p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+    <script src="js/storage.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
+    <script src="js/tasks.js" defer></script>
+    <script src="js/focus.js" defer></script>
+    <script src="js/progress.js" defer></script>
+    <script src="js/calendar.js" defer></script>
+    <script src="js/notifications.js" defer></script>
+    <script src="js/profile.js" defer></script>
+    <script src="js/settings.js" defer></script>
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>
