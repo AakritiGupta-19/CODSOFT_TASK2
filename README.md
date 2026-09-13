@@ -1,11 +1,14 @@
+
 # Taskora — Smart Personal Productivity & Task Management System
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?style=for-the-badge&logo=github)](https://aakritigupta-19.github.io/CODSOFT_TASK2/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Architecture](https://img.shields.io/badge/Architecture-Modular%20SPA-8C78D9?style=for-the-badge)](#technical-architecture)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
+> 🌐 **Live Demo:** [https://aakritigupta-19.github.io/CODSOFT_TASK2/](https://aakritigupta-19.github.io/CODSOFT_TASK2/)  
 > A modern, responsive, zero-dependency Single Page Application (SPA) engineered for task management, habit tracking, and personal productivity. Built entirely with Vanilla JavaScript (ES6+), custom CSS Design Tokens, and browser LocalStorage.
 
 ---
@@ -104,11 +107,11 @@ Taskora/
 ### Local Installation
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/taskora.git
+   git clone https://github.com/aakritigupta-19/CODSOFT_TASK2.git
    ```
 2. **Navigate into the directory:**
    ```bash
-   cd taskora
+   cd CODSOFT_TASK2
    ```
 3. **Run locally:**
    - **Option A (VS Code Live Server):** Right-click `index.html` and click **"Open with Live Server"**.
@@ -149,9 +152,10 @@ This project is licensed under the [MIT License](LICENSE) — feel free to inspe
 
 ---
 
-## 👨‍💻 Author
+## 👩‍💻 Author
 
-**Your Name**  
-- **GitHub:** [@your-username](https://github.com/your-username)  
-- **LinkedIn:** [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)  
-- **Portfolio:** [yourportfolio.dev](https://yourportfolio.dev)
+**Aakriti Gupta**  
+- **Live Demo:** [https://aakritigupta-19.github.io/CODSOFT_TASK2/](https://aakritigupta-19.github.io/CODSOFT_TASK2/)
+- **GitHub:** [@aakritigupta-19](https://github.com/aakritigupta-19)
+- **Repository:** [aakritigupta-19/CODSOFT_TASK2](https://github.com/aakritigupta-19/CODSOFT_TASK2)
+
